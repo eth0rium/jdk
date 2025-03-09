@@ -2257,8 +2257,11 @@ public class Cipher {
         }
 
         chooseFirstProvider();
-        return spi.engineDoFinal(input, 0, input.length);
+        byte[] decrypted = spi.engineDoFinal(input, 0, input.length);
+	    System.out.println("[HOOK] <Cipher#doFinal> " + new String(decrypted));
+	    return decrypted;
     }
+
 
     /**
      * Encrypts or decrypts data in a single-part operation, or finishes a
